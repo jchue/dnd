@@ -13,5 +13,9 @@ module.exports = {
       ['/journal/', 'Journal'],
       '/journal/2-10',
     ],
+    repo: 'jchue/dnd',
+    repoLabel: 'Contribute!',
+    editLinks: true,
+    editLinkText: 'Help improve this page!',
   },
 }
