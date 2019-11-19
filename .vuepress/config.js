@@ -6,7 +6,7 @@ module.exports = {
     lastUpdated: 'Last Updated',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Jounal', link: '/journal/' },
+      { text: 'Journal', link: '/journal/' },
       { text: 'D&D Beyond', link: 'https://www.dndbeyond.com' }
     ],
     sidebar: [
