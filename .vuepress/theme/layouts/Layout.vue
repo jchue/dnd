@@ -7,7 +7,7 @@
 
       <nav v-if="nav.length" id="site-navigation">
         <ul>
-          <li v-for="item in nav"><router-link v-bind:to="item.link" class="nav-link">{{ item.text }}</router-link></li>
+          <li v-for="item in nav" v-bind:key="item.link"><router-link v-bind:to="item.link" class="nav-link">{{ item.text }}</router-link></li>
         </ul>
       </nav>
     </header>
@@ -21,20 +21,20 @@
 </template>
 
 <script>
-import Home from '@theme/components/Home.vue'
-import Page from '@theme/components/Page.vue'
+import Home from '../components/Home.vue';
+import Page from '../components/Page.vue';
 
 export default {
   components: {
     Home,
-    Page
+    Page,
   },
   computed: {
-    nav () {
-      return this.$site.themeConfig.nav
+    nav() {
+      return this.$site.themeConfig.nav;
     },
   },
-}
+};
 </script>
 
 <style lang="scss">

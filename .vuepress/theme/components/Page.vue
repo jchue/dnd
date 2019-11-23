@@ -3,11 +3,11 @@
     <aside id="page-sidebar">
       <nav id="page-nav">
         <ul>
-          <li v-for="page in pages">
+          <li v-for="page in pages" v-bind:key="page.key">
             <router-link v-bind:to="page.path" class="page-title">{{ page.title }}</router-link>
 
             <ul v-if="page.headers">
-              <li v-for="header in page.headers"><router-link v-bind:to="page.path + '#' + header.slug">{{ header.title }}</router-link></li>
+              <li v-for="header in page.headers" v-bind:key="header.slug"><router-link v-bind:to="page.path + '#' + header.slug">{{ header.title }}</router-link></li>
             </ul>
           </li>
         </ul>
@@ -23,17 +23,13 @@
 </template>
 
 <script>
-import PageEdit from '@theme/components/PageEdit.vue'
+import PageEdit from './PageEdit.vue';
 
 export default {
   components: { PageEdit },
-  data () {
-    return {
-    }
-  },
   computed: {
-    pages: function() {
-      let pages = [];
+    pages() {
+      const pages = [];
 
       // Get domain of current page
       const thisDomain = this.domain(this.$page.path);
@@ -43,30 +39,35 @@ export default {
 
       sitePages.forEach((page) => {
         const thatDomain = this.domain(page.path);
-        if (thatDomain == thisDomain) {
+        if (thatDomain === thisDomain) {
           pages.push(page);
         }
       });
 
       // Sort the pages
-      pages.sort(function(a, b) {
-        if(a.path.length < b.path.length) {
+      pages.sort((a, b) => {
+        // First compare the length of the paths
+        if (a.path.length < b.path.length) {
           return -1;
-        } else if (a.path.length > b.path.length) {
-          return 1;
-        } else {
-          if(a.path < b.path) {
-            return -1;
-          } else if (a.path > b.path) {
-            return 1;
-          } else {
-            return 0;
-          }
         }
+        if (a.path.length > b.path.length) {
+          return 1;
+        }
+
+        // If the lengths are the same, then compare the values themselves (alphabetically)
+        if (a.path < b.path) {
+          return -1;
+        }
+        if (a.path > b.path) {
+          return 1;
+        }
+
+        // Otherwise they are the same
+        return 0;
       });
 
       return pages;
-    }
+    },
   },
   methods: {
     domain(path) {
@@ -78,7 +79,7 @@ export default {
 
         const firstSlash = path.indexOf('/');
         let startPos;
-        if(firstSlash > 0) {
+        if (firstSlash > 0) {
           // Path does not start with slash
           startPos = 0;
         } else {
@@ -88,22 +89,22 @@ export default {
 
         const secondSlash = path.indexOf('/', startPos);
         let endPos;
-        if(secondSlash > -1) {
+        if (secondSlash > -1) {
           // Second slash exists
           endPos = path.indexOf('/', startPos);
           return path.substring(startPos, endPos);
-        } else {
-          // Second slash does not exist
-          return path.substring(startPos);
         }
-      } else {
-        // No slash, so return as-is
-        return path;
+
+        // Second slash does not exist
+        return path.substring(startPos);
       }
+
+      // No slash, so return as-is
+      return path;
     },
   },
   props: ['sidebarItems'],
-}
+};
 </script>
 
 <style lang="scss">

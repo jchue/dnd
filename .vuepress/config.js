@@ -11,4 +11,4 @@ module.exports = {
     editLinks: true,
     editLinkText: 'Edit This Page',
   },
-}
+};

@@ -32,11 +32,11 @@
 <script>
 export default {
   computed: {
-    data () {
-      return this.$page.frontmatter
+    data() {
+      return this.$page.frontmatter;
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">

@@ -7,7 +7,7 @@
 
       <nav v-if="nav.length" id="site-navigation">
         <ul>
-          <li v-for="item in nav"><router-link v-bind:to="item.link" class="nav-link">{{ item.text }}</router-link></li>
+          <li v-for="item in nav" v-bind:key="item.link"><router-link v-bind:to="item.link" class="nav-link">{{ item.text }}</router-link></li>
         </ul>
       </nav>
     </header>
@@ -24,32 +24,25 @@
 </template>
 
 <script>
-import Home from '@theme/components/Home.vue'
-import Page from '@theme/components/Page.vue'
-
 const msgs = [
-  `There's nothing here.`,
-  `How did we get here?`,
-  `That's a Four-Oh-Four.`,
-  `Looks like we've got some broken links.`
-]
+  'There\'s nothing here.',
+  'How did we get here?',
+  'That\'s a Four-Oh-Four.',
+  'Looks like we\'ve got some broken links.',
+];
 
 export default {
-  components: {
-    Home,
-    Page
-  },
   computed: {
-    nav () {
-      return this.$site.themeConfig.nav
+    nav() {
+      return this.$site.themeConfig.nav;
     },
   },
   methods: {
-    getMsg () {
-      return msgs[Math.floor(Math.random() * msgs.length)]
-    }
-  }
-}
+    getMsg() {
+      return msgs[Math.floor(Math.random() * msgs.length)];
+    },
+  },
+};
 </script>
 
 <style lang="scss">
