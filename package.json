@@ -10,5 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "vuepress": "^1.2.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0"
   }
 }
