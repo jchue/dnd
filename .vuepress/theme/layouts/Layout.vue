@@ -14,6 +14,7 @@
     <section id="site-body" v-bind:class="{ home: this.$page.frontmatter.home, page: !this.$page.frontmatter.home }">
       <transition name="fade">
         <Home v-if="this.$page.frontmatter.home"/>
+        <Adventurers v-else-if="this.$page.frontmatter.template == 'adventurers'"/>
         <Page v-else></Page>
       </transition>
     </section>
@@ -112,6 +113,14 @@ blockquote {
   border-left: 8px solid lighten($textColor, 75%);
   margin: 0 0 30px 0;
   padding-left: 30px;
+}
+img {
+  margin: 0 0 20px 0;
+
+  &.align-left {
+    float: left;
+    margin-right: 20px;
+  }
 }
 
 #site-header {

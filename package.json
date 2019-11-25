@@ -4,6 +4,7 @@
   "description": "Documenting the adventures of my Dungeons & Dragons group",
   "main": "index.js",
   "scripts": {
+    "serve": "vuepress dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jonathan Chue",
