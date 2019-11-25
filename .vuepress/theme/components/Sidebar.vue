@@ -26,8 +26,6 @@ export default {
       return utils.getDomainPages(this.domain, this.$site.pages);
     },
   },
-  methods: {
-  },
 };
 </script>
 

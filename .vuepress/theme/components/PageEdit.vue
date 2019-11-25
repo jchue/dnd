@@ -13,39 +13,37 @@
 </template>
 
 <script>
-import isNil from 'lodash/isNil'
+import isNil from 'lodash/isNil';
 
-const endingSlashRE = /\/$/
-const outboundRE = /^[a-z]+:/i
+const endingSlashRE = /\/$/;
+const outboundRE = /^[a-z]+:/i;
 
 export default {
   name: 'PageEdit',
   computed: {
-    lastUpdated () {
-      return this.$page.lastUpdated
+    lastUpdated() {
+      return this.$page.lastUpdated;
     },
-
-    lastUpdatedText () {
+    lastUpdatedText() {
       if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
-        return this.$themeLocaleConfig.lastUpdated
+        return this.$themeLocaleConfig.lastUpdated;
       }
       if (typeof this.$site.themeConfig.lastUpdated === 'string') {
-        return this.$site.themeConfig.lastUpdated
+        return this.$site.themeConfig.lastUpdated;
       }
-      return 'Last Updated'
+      return 'Last Updated';
     },
-
-    editLink () {
+    editLink() {
       const showEditLink = isNil(this.$page.frontmatter.editLink)
         ? this.$site.themeConfig.editLinks
-        : this.$page.frontmatter.editLink
+        : this.$page.frontmatter.editLink;
 
       const {
         repo,
         docsDir = '',
         docsBranch = 'master',
-        docsRepo = repo
-      } = this.$site.themeConfig
+        docsRepo = repo,
+      } = this.$site.themeConfig;
 
       if (showEditLink && docsRepo && this.$page.relativePath) {
         return this.createEditLink(
@@ -53,26 +51,25 @@ export default {
           docsRepo,
           docsDir,
           docsBranch,
-          this.$page.relativePath
-        )
+          this.$page.relativePath,
+        );
       }
-      return null
+      return null;
     },
 
-    editLinkText () {
+    editLinkText() {
       return (
         this.$themeLocaleConfig.editLinkText
         || this.$site.themeConfig.editLinkText
-        || `Edit this page`
-      )
-    }
+        || 'Edit this page'
+      );
+    },
   },
-
   methods: {
-    createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
-      const bitbucket = /bitbucket.org/
+    createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
+      const bitbucket = /bitbucket.org/;
       if (bitbucket.test(repo)) {
-        const base = outboundRE.test(docsRepo) ? docsRepo : repo
+        const base = outboundRE.test(docsRepo) ? docsRepo : repo;
         return (
           base.replace(endingSlashRE, '')
           + `/src`
@@ -80,22 +77,22 @@ export default {
           + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
           + path
           + `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-        )
+        );
       }
 
       const base = outboundRE.test(docsRepo)
         ? docsRepo
-        : `https://github.com/${docsRepo}`
+        : `https://github.com/${docsRepo}`;
       return (
         base.replace(endingSlashRE, '')
         + `/edit`
         + `/${docsBranch}/`
         + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
         + path
-      )
-    }
-  }
-}
+      );
+    },
+  },
+};
 </script>
 
 <style lang="scss">

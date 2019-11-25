@@ -2,28 +2,13 @@
   <main id="page-content" v-bind:style="'background-image: url(' + $withBase(data.heroImage) +
   '); background-position: center; background-size: cover;'">
     <header class="hero">
-      <span class="subtitle">{{ data.tagline || $subtitle || 'Hello' }}</span>
-      <h1 v-if="data.heroText !== null" id="main-title">{{ data.heroText || $title || 'Hello' }}</h1>
-
+      <span class="subtitle">{{ data.subtitle }}</span>
+      <h1 v-if="data.heroText !== null" id="main-title">{{ data.heroText }}</h1>
 
       <p class="description">
-        {{ data.description || 'Welcome to your VuePress site' }}
+        {{ data.description }}
       </p>
     </header>
-
-    <div
-      class="features"
-      v-if="data.features && data.features.length"
-    >
-      <div
-        class="feature"
-        v-for="(feature, index) in data.features"
-        :key="index"
-      >
-        <h2>{{ feature.title }}</h2>
-        <p>{{ feature.details }}</p>
-      </div>
-    </div>
 
     <Content/>
   </main>
