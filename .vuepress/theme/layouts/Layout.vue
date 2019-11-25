@@ -11,7 +11,7 @@
         </ul>
       </nav>
     </header>
-    <section id="site-body" v-bind:class="{ home: this.$page.frontmatter.home, page: !this.$page.frontmatter.home }">
+    <section id="site-body" v-bind:class="{ home: this.$page.frontmatter.home, page: (!this.$page.frontmatter.home && this.$page.frontmatter.template != 'adventurers')}">
       <transition name="fade">
         <Home v-if="this.$page.frontmatter.home"/>
         <Adventurers v-else-if="this.$page.frontmatter.template == 'adventurers'"/>
@@ -23,11 +23,13 @@
 
 <script>
 import Home from '../components/Home.vue';
+import Adventurers from '../components/Adventurers.vue';
 import Page from '../components/Page.vue';
 
 export default {
   components: {
     Home,
+    Adventurers,
     Page,
   },
   computed: {
@@ -174,6 +176,14 @@ img {
 #page-content {
   overflow: auto;
   height: 100%;
+}
+
+.subtitle {
+  display: block;
+  font-family: Arvo;
+  font-size: 20px;
+  line-height: 1.3;
+  margin-top: -25px;
 }
 
 .fade-enter-active, .fade-leave-active {

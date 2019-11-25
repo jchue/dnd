@@ -2,7 +2,7 @@
   <main id="page-content" v-bind:style="'background-image: url(' + $withBase(data.heroImage) +
   '); background-position: center; background-size: cover;'">
     <header class="hero">
-      <span class="tagline">{{ data.tagline || $subtitle || 'Hello' }}</span>
+      <span class="subtitle">{{ data.tagline || $subtitle || 'Hello' }}</span>
       <h1 v-if="data.heroText !== null" id="main-title">{{ data.heroText || $title || 'Hello' }}</h1>
 
 
@@ -69,7 +69,7 @@ export default {
     margin-bottom: 40px;
   }
 
-  .tagline {
+  .subtitle {
     display: block;
     font-family: Arvo;
     font-size: 26px;
