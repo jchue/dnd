@@ -21,6 +21,7 @@ import Sidebar from './Sidebar.vue';
 import PageEdit from './PageEdit.vue';
 
 export default {
+  name: 'Adventurer',
   components: { Sidebar, PageEdit },
   computed: {
     adventurer() {

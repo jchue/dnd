@@ -25,5 +25,6 @@ module.exports = {
     'no-else-return': 'warn',
     'no-lonely-if': 'warn',
     'no-restricted-syntax': 'warn',
+    'prefer-template': 'warn',
   },
 };

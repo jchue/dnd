@@ -10,9 +10,11 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import utils from '../utils';
 
 export default {
+  name: 'Adventurers',
   data() {
     return {
       title: 'Adventurers',
@@ -27,13 +29,10 @@ export default {
       const adventurers = [];
 
       pages.forEach((page) => {
-        const adventurer = Object.create(page);
-
         // Collapse frontmatter attributes to page attributes
-        const { frontmatter } = page;
-        for (const key in frontmatter) {
-          adventurer[key] = frontmatter[key];
-        }
+        const adventurer = _.cloneDeep(page);
+        _.merge(adventurer, adventurer.frontmatter);
+        delete adventurer.frontmatter;
 
         // Build new array with this flat structure
         adventurers.push(adventurer);

@@ -72,7 +72,7 @@ export default {
         const base = outboundRE.test(docsRepo) ? docsRepo : repo;
         return (
           base.replace(endingSlashRE, '')
-          + `/src`
+          + '/src'
           + `/${docsBranch}/`
           + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
           + path
@@ -85,7 +85,7 @@ export default {
         : `https://github.com/${docsRepo}`;
       return (
         base.replace(endingSlashRE, '')
-        + `/edit`
+        + '/edit'
         + `/${docsBranch}/`
         + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
         + path

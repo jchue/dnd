@@ -11,20 +11,12 @@
 </template>
 
 <script>
-import utils from '../utils';
 import Sidebar from './Sidebar.vue';
 import PageEdit from './PageEdit.vue';
 
 export default {
+  name: 'Page',
   components: { Sidebar, PageEdit },
-  computed: {
-    domain() {
-      return utils.getDomain(this.$page.path);
-    },
-    pages() {
-      return utils.getDomainPages(this.domain, this.$site.pages);
-    },
-  },
 };
 </script>
 

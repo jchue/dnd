@@ -18,6 +18,7 @@
 import utils from '../utils';
 
 export default {
+  name: 'Sidebar',
   computed: {
     domain() {
       return utils.getDomain(this.$page.path);
