@@ -3,7 +3,7 @@
     <nav id="page-nav">
       <ul>
         <li v-for="page in pages" v-bind:key="page.key">
-          <router-link v-bind:to="page.path" class="page-title">{{ page.title }}</router-link>
+          <router-link v-bind:to="page.path" class="page-title">{{ page.frontmatter.name || page.title }}</router-link>
 
           <ul v-if="page.headers">
             <li v-for="header in page.headers" v-bind:key="header.slug"><router-link v-bind:to="page.path + '#' + header.slug">{{ header.title }}</router-link></li>

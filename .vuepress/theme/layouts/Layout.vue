@@ -15,6 +15,7 @@
       <transition name="fade">
         <Home v-if="this.$page.frontmatter.home"/>
         <Adventurers v-else-if="this.$page.frontmatter.template == 'adventurers'"/>
+        <Adventurer v-else-if="this.$page.frontmatter.template == 'adventurer'"/>
         <Page v-else></Page>
       </transition>
     </section>
@@ -24,11 +25,13 @@
 <script>
 import Home from '../components/Home.vue';
 import Adventurers from '../components/Adventurers.vue';
+import Adventurer from '../components/Adventurer.vue';
 import Page from '../components/Page.vue';
 
 export default {
   components: {
     Home,
+    Adventurer,
     Adventurers,
     Page,
   },

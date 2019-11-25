@@ -1,10 +1,10 @@
 ---
+template: adventurer
+name: Akmenos the Inchoate
+race: Tiefling
+class: Blood Hunter, Order of the Ghostslayer
 photo: ../assets/akmenos.jpg
 ---
-
-# Akmenos the Inchoate
-
-<span class="subtitle">Tiefling Blood Hunter, Order of the Ghostslayer</span>
 
 <img src="../.vuepress/public/assets/akmenos.jpg" alt="Akmenos" class="align-left" style="max-width: 300px;"/>
 

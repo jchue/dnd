@@ -1,10 +1,10 @@
 ---
+template: adventurer
+name: Rhogar Drachedandion
+race: Dragonborn
+class: Barbarian, Path of the Storm Herald
 photo: ../assets/rhogar.jpg
 ---
-
-# Rhogar Drachedandion
-
-<span class="subtitle">Dragonborn Barbarian, Path of the Storm Herald</span>
 
 <img src="../.vuepress/public/assets/rhogar.jpg" alt="Rhogar" class="align-left" style="max-width: 300px;"/>
 
