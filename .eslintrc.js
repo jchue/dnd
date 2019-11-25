@@ -20,8 +20,10 @@ module.exports = {
     'vue',
   ],
   rules: {
+    'guard-for-in': 'warn',
     'max-len': 'warn',
     'no-else-return': 'warn',
     'no-lonely-if': 'warn',
+    'no-restricted-syntax': 'warn',
   },
 };

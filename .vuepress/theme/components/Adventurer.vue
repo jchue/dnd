@@ -17,19 +17,12 @@
 </template>
 
 <script>
-import utils from '../utils';
 import Sidebar from './Sidebar.vue';
 import PageEdit from './PageEdit.vue';
 
 export default {
   components: { Sidebar, PageEdit },
   computed: {
-    domain() {
-      return utils.getDomain(this.$page.path);
-    },
-    pages() {
-      return utils.getDomainPages(this.domain, this.$site.pages);
-    },
     adventurer() {
       return this.$page.frontmatter;
     },
@@ -40,7 +33,7 @@ export default {
 <style lang="scss">
 @import '../styles/index';
 
-.page #page-content {
+.adventurer #page-content {
   margin-left: 350px;
   padding: 50px 100px;
 

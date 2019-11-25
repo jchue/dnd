@@ -11,7 +11,7 @@
         </ul>
       </nav>
     </header>
-    <section id="site-body" v-bind:class="{ home: this.$page.frontmatter.home, page: !this.$page.frontmatter.home }">
+    <section id="site-body" v-bind:class="config.template">
       <transition name="fade">
         <main id="page-content">
           <h1>404</h1>
@@ -33,6 +33,9 @@ const msgs = [
 
 export default {
   computed: {
+    config() {
+      return this.$page.frontmatter;
+    },
     nav() {
       return this.$site.themeConfig.nav;
     },

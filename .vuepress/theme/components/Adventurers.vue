@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
 
     <ul class="adventurer-list">
-      <li v-for="adventurer in adventurers" v-bind:key="adventurer.key"><router-link v-bind:to="adventurer.path" v-bind:style="'background-image: url(' + adventurer.frontmatter.photo + ')'" class="adventurer-tile"><span class="adventurer-name">{{ adventurer.title }}</span></router-link></li>
+      <li v-for="adventurer in adventurers" v-bind:key="adventurer.key"><router-link v-bind:to="adventurer.path" v-bind:style="'background-image: url(' + adventurer.photo + ')'" class="adventurer-tile"><span class="adventurer-name">{{ adventurer.name }}</span></router-link></li>
     </ul>
     <Content/>
   </main>
@@ -19,16 +19,28 @@ export default {
     };
   },
   computed: {
-    data() {
-      return this.$page.frontmatter;
-    },
     domain() {
       return utils.getDomain(this.$page.path);
     },
     adventurers() {
       const pages = utils.getDomainPages(this.domain, this.$site.pages);
+      const adventurers = [];
 
-      return pages.filter((page) => page.frontmatter.photo);
+      pages.forEach((page) => {
+        const adventurer = Object.create(page);
+
+        // Collapse frontmatter attributes to page attributes
+        const { frontmatter } = page;
+        for (const key in frontmatter) {
+          adventurer[key] = frontmatter[key];
+        }
+
+        // Build new array with this flat structure
+        adventurers.push(adventurer);
+      });
+
+      // Only return items with a photo
+      return adventurers.filter((adventurer) => adventurer.photo);
     },
   },
 };

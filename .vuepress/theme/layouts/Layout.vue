@@ -7,15 +7,15 @@
 
       <nav v-if="nav.length" id="site-navigation">
         <ul>
-          <li v-for="item in nav" v-bind:key="item.link"><router-link v-bind:to="item.link" class="nav-link">{{ item.text }}</router-link></li>
+          <li v-for="page in nav" v-bind:key="page.link"><router-link v-bind:to="page.link" class="nav-link">{{ page.text }}</router-link></li>
         </ul>
       </nav>
     </header>
-    <section id="site-body" v-bind:class="{ home: this.$page.frontmatter.home, page: (!this.$page.frontmatter.home && this.$page.frontmatter.template != 'adventurers')}">
+    <section id="site-body" v-bind:class="template">
       <transition name="fade">
-        <Home v-if="this.$page.frontmatter.home"/>
-        <Adventurers v-else-if="this.$page.frontmatter.template == 'adventurers'"/>
-        <Adventurer v-else-if="this.$page.frontmatter.template == 'adventurer'"/>
+        <Home v-if="template == 'home'"/>
+        <Adventurers v-else-if="template == 'adventurers'"/>
+        <Adventurer v-else-if="template == 'adventurer'"/>
         <Page v-else></Page>
       </transition>
     </section>
@@ -36,6 +36,9 @@ export default {
     Page,
   },
   computed: {
+    template() {
+      return this.$page.frontmatter.template || 'page';
+    },
     nav() {
       return this.$site.themeConfig.nav;
     },
