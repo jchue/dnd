@@ -3,10 +3,10 @@ template: adventurer
 name: Akmenos the Inchoate
 race: Tiefling
 class: Blood Hunter, Order of the Ghostslayer
-photo: ../assets/akmenos.jpg
+photo: akmenos.jpg
 ---
 
-<img src="../.vuepress/public/assets/akmenos.jpg" alt="Akmenos" class="align-left" style="max-width: 300px;"/>
+<img src="./akmenos.jpg" alt="Akmenos" class="align-left" style="max-width: 300px;"/>
 
 When he was young, he never understand why everyone treated him differently. After all, wasn't this a world where dwarves and dragonborn lived and worked alongside humans and elves? "It's just because they don't know you," Orryn always said. The librarian gnome was the closest thing Akmenos ever knew to a friend and perhaps even a father. And every time Akmenos came to him with the latest ordeal encountered with strangers, the wizened Orryn always seemed to have the time to listen.
 

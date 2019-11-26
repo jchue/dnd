@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
 
     <ul class="adventurer-list">
-      <li v-for="adventurer in adventurers" v-bind:key="adventurer.key"><router-link v-bind:to="adventurer.path" v-bind:style="'background-image: url(' + adventurer.photo + ')'" class="adventurer-tile"><span class="adventurer-name">{{ adventurer.name }}</span></router-link></li>
+      <li v-for="adventurer in adventurers" v-bind:key="adventurer.key"><router-link v-bind:to="adventurer.path" v-bind:style="'background-image: url(' + require(`../../../adventurers/${adventurer.photo}`) + ')'" class="adventurer-tile"><span class="adventurer-name">{{ adventurer.name }}</span></router-link></li>
     </ul>
     <Content/>
   </main>
