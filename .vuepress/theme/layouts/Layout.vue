@@ -12,7 +12,7 @@
       </nav>
     </header>
     <section id="site-body" v-bind:class="template">
-      <transition name="fade">
+      <transition name="fade" mode="out-in">
         <Home v-if="template == 'home'"/>
         <Adventurers v-else-if="template == 'adventurers'"/>
         <Adventurer v-else-if="template == 'adventurer'"/>
@@ -192,9 +192,11 @@ img {
   margin-top: -25px;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity .25s;
 }
+
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
