@@ -1,18 +1,18 @@
 <template>
   <div id="page-container">
     <Sidebar/>
-    <transition name="fade">
       <main id="page-content">
         <header id="page-header">
           <h1>{{ adventurer.name }}</h1>
           <span class="subtitle">{{ adventurer.race }} {{ adventurer.class }}</span>
         </header>
 
-        <Content />
+        <transition name="fade">
+          <Content />
+        </transition>
 
         <PageEdit />
       </main>
-    </transition>
   </div>
 </template>
 
