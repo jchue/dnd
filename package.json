@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "vuepress dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vuepress build"
   },
   "author": "Jonathan Chue",
   "license": "ISC",
