@@ -12,7 +12,7 @@
       </nav>
     </header>
     <section id="site-body" v-bind:class="template">
-      <transition name="fade" mode="out-in">
+      <transition name="fade" mode="out-in" appear>
         <Home v-if="template == 'home'"/>
         <Adventurers v-else-if="template == 'adventurers'"/>
         <Adventurer v-else-if="template == 'adventurer'"/>
