@@ -39,10 +39,32 @@ export default {
   bottom: 0;
   border-right: 1px solid #eaecef;
   box-sizing: border-box;
+  flex-basis: content;
+  flex-shrink: 0;
   left: 0;
   margin: 0;
+  max-width: 22rem;
   overflow-y: auto;
-  top: 48px;
+  padding: 3.125rem 1.875rem;
+  top: 3rem;
+  transition: left 0.1s ease-out;
+  z-index: 1;
+
+  @media (max-width: $breakpoint-bravo) {
+    max-width: 16rem;
+    padding: 1.875rem;
+  }
+
+  @media (max-width: $breakpoint-charlie) {
+    position: fixed;
+    max-width: 100%;
+    width: 100%;
+    left: -100%;
+
+    &.opened {
+      left: 0;
+    }
+  }
 }
 
 #page-nav {
@@ -50,7 +72,7 @@ export default {
     padding: 0;
 
     ul a {
-      padding-left: 20px;
+      padding-left: 1.25rem;
 
       @media (max-width: $breakpoint-bravo) and (min-width: $breakpoint-charlie){
         padding-left: 0;
@@ -67,7 +89,7 @@ export default {
   a {
     color: $textColor;
     display: block;
-    padding: 5px 0;
+    padding: 0.313rem 0;
 
     &:hover {
       color: $accentColor;
@@ -77,6 +99,6 @@ export default {
 
 .page-title {
   font-family: 'Roboto Slab';
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 </style>

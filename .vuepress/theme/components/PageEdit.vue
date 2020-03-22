@@ -99,7 +99,8 @@ export default {
 @import '../styles/index';
 
 .page-edit {
-  font-size: 12px;
+  font-size: 0.875rem;
+  margin-top: 3.125rem;
 }
 
 .edit-link {

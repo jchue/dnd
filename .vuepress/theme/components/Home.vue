@@ -46,27 +46,36 @@ export default {
   align-self: center;
   color: #fff;
   flex-grow: 1;
-  margin: 0 100px;
+  margin: 0 6.25rem;
   text-align: center;
 
   h1 {
-    font-size: 70px;
-    line-height: 1;
-    margin-bottom: 40px;
+    font-size: 4.375rem;
+    line-height: 0.9;
+    margin-bottom: 2.5rem;
   }
 
   .subtitle {
     display: block;
     font-family: Arvo;
-    font-size: 26px;
-    margin-bottom: 10px;
+    font-size: 1.625rem;
+    margin: 0 0 0.625rem 0;
     text-transform: uppercase;
   }
 
   .description {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 300;
-    line-height: 1.7;
+    line-height: 1.75;
+  }
+
+  @media (max-width: $breakpoint-bravo) {
+    margin: 0 3.125rem;
+  }
+
+  @media (max-width: $breakpoint-charlie) {
+    align-self: flex-start;
+    margin: 1.25rem 0;
   }
 }
 </style>

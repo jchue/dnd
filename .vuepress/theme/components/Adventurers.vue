@@ -54,10 +54,6 @@ h1 {
   text-align: center;
 }
 
-#page-content {
-  padding: 50px 100px;
-}
-
 .adventurer-list {
   list-style-type: none;
   margin: 0;

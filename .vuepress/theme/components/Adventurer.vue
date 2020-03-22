@@ -35,9 +35,6 @@ export default {
 @import '../styles/index';
 
 .adventurer #page-content {
-  margin-left: 350px;
-  padding: 50px 100px;
-
   h1,
   h2,
   h3,

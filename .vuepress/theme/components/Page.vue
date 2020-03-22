@@ -29,8 +29,8 @@ export default {
   h2,
   h3,
   h4 {
-    margin-top: -50px;
-    padding-top: 50px;
+    margin-top: -3.125rem;
+    padding-top: 3.125rem;
   }
 }
 </style>

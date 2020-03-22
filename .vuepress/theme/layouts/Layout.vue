@@ -73,29 +73,31 @@ export default {
 body {
   color: $textColor;
   font-family: 'Open Sans';
-  font-size: 14px;
+  font-size: 1rem;
   margin: 0;
   padding: 0;
 }
 
 h1 {
+  line-height: 0.9;
   font-family: Calistoga;
-  font-size: 40px;
+  font-size: 2.625rem;
   font-weight: normal;
-  margin: 0 0 25px 0;
+  margin: 0 0 1.5rem 0;
 
   .header-anchor {
-    margin-left: -32.1px;
+    margin: 0 -0.313rem 0 -1.8rem;
   }
 }
 
 h2 {
   font-family: 'Roboto Slab';
-  font-size: 28px;
-  margin: 0 0 25px 0;
+  font-size: 1.75rem;
+  line-height: 1;
+  margin: 0 0 1.5rem 0;
 
   .header-anchor {
-    margin-left: -21.45px;
+    margin: 0 -0.125rem 0 -1.213rem;
   }
 }
 
@@ -105,22 +107,24 @@ h3,
 h4 {
   .header-anchor {
     display: none;
-    font-size: .85em;
+    font-size: 0.85em;
     font-weight: normal;
   }
 
-  &:hover .header-anchor {
-    display: inline;
+  @media (min-width: $breakpoint-charlie) {
+    &:hover .header-anchor {
+      display: inline;
+    }
   }
 }
 
 ul {
-  margin: 0 0 30px 0;
+  margin: 0 0 1.5rem 0;
 }
 
 p {
-  line-height: 1.8;
-  margin: 0 0 25px 0;
+  line-height: 1.75;
+  margin: 0 0 1.5rem 0;
 }
 
 a {
@@ -136,40 +140,78 @@ blockquote {
   box-sizing: border-box;
   color: lighten($textColor, 55%);
   border-left: 8px solid lighten($textColor, 75%);
-  margin: 0 0 30px 0;
-  padding-left: 30px;
+  margin: 0 0 1.5rem 0;
+  padding-left: 1.5rem;
 }
+
 img {
-  margin: 0 0 20px 0;
+  margin: 0 0 1.5rem 0;
 
   &.align-left {
     float: left;
-    margin-right: 20px;
+    margin-right: 1.5rem;
   }
 }
 
 #site-header {
   background-color: #26282a;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 1.25rem;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
+
+  @media (max-width: $breakpoint-charlie) {
+    padding: 0 0.625rem;
+  }
+}
+
+#nav-toggle {
+  background-color: #000;
+  border: none;
+  color: #fff;
+  display: none;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0 0 0 -0.625rem;
+  padding: 0.625rem;
+  width: 3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:after {
+    content: "+";
+  }
+
+  &.opened:after {
+    content: "-";
+  }
+
+  @media (max-width: $breakpoint-charlie) {
+    &.page,
+    &.adventurer {
+      display: inline-block;
+    }
+  }
 }
 
 #site-title {
   color: #fff;
   display: inline-block;
-  line-height: 28px;
-  padding: 10px;
+  font-size: 1rem;
+  line-height: 1.75;
+  padding: 0.625rem;
   text-transform: uppercase;
 }
 
 #site-navigation {
   display: inline-block;
   float: right;
-  line-height: 28px;
+  font-size: 1rem;
+  line-height: 1.75;
 
   ul {
     margin: 0;
@@ -184,7 +226,7 @@ img {
   a {
     color: #a5afba;
     display: inline-block;
-    padding: 10px;
+    padding: 0.625rem;
 
     &:hover {
       color: #fff;
@@ -193,107 +235,45 @@ img {
 }
 
 #site-body {
-  margin-top: 48px;
-}
-
-#page-content {
-  overflow: auto;
-  height: 100%;
-}
-
-.subtitle {
-  display: block;
-  font-family: Arvo;
-  font-size: 20px;
-  line-height: 1.3;
-  margin-top: -25px;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .25s;
-}
-
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-#nav-toggle {
-  background-color: #000;
-  border: none;
-  bottom: 0;
-  color: #fff;
-  display: none;
-  font-size: 16px;
-  line-height: 28px;
-  margin: 0 0 0 -20px;
-  padding: 10px;
-  width: 48px;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:after {
-    content: "+";
-  }
-
-  &.opened:after {
-    content: "-";
-  }
+  margin-top: 3rem;
 }
 
 #page-container {
   display: flex;
 }
 
-#page-sidebar {
-  flex-basis: content;
-  flex-shrink: 0;
-  max-width: 350px;
-  padding: 50px 30px;
-  transition: left .1s ease-out;
-  z-index: 1;
-}
+#page-content {
+  overflow: auto;
+  padding: 3.125rem 6.25rem;
+  height: 100%;
 
-#page-sidebar + #page-content {
-  padding: 50px 100px;
-}
+  @media (max-width: $breakpoint-alpha) {
+    padding: 3.125rem;
+  }
 
-@media (max-width: $breakpoint-alpha) {
-  #page-sidebar + #page-content {
-    padding: 50px 50px;
+  @media (max-width: $breakpoint-bravo) {
+    padding: 1.875rem;
+  }
+
+  @media (max-width: $breakpoint-charlie) {
+    padding: 1.875rem 1.25rem;
   }
 }
 
-@media (max-width: $breakpoint-bravo) {
-  #page-sidebar {
-    max-width: 250px;
-    padding: 30px 30px;
-  }
-
-  #page-sidebar + #page-content {
-    padding: 30px 50px;
-  }
+.subtitle {
+  display: block;
+  font-family: Arvo;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-top: -1.5rem;
 }
 
-@media (max-width: $breakpoint-charlie) {
-  .page,
-  .adventurer {
-    &#nav-toggle {
-      display: inline-block;
-    }
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s;
+}
 
-  #page-sidebar {
-    position: fixed;
-    max-width: 100%;
-    width: 100%;
-    left: -100%;
-
-    &.opened {
-      left: 0;
-    }
-  }
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
