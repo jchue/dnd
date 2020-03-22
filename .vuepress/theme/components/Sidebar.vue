@@ -1,5 +1,5 @@
 <template>
-  <aside id="page-sidebar">
+  <aside id="page-sidebar" v-bind:class="{opened: menuOpened}">
     <nav id="page-nav">
       <ul>
         <li v-for="page in pages" v-bind:key="page.key">
@@ -19,6 +19,7 @@ import utils from '../utils';
 
 export default {
   name: 'Sidebar',
+  props: ['menuOpened'],
   computed: {
     domain() {
       return utils.getDomain(this.$page.path);
@@ -38,15 +39,10 @@ export default {
   bottom: 0;
   border-right: 1px solid #eaecef;
   box-sizing: border-box;
-  display: table-cell;
   left: 0;
   margin: 0;
   overflow-y: auto;
-  padding: 50px 30px;
-  position: fixed;
   top: 48px;
-  width: 350px;
-  z-index: 10;
 }
 
 #page-nav {
@@ -55,6 +51,10 @@ export default {
 
     ul a {
       padding-left: 20px;
+
+      @media (max-width: $breakpoint-bravo) and (min-width: $breakpoint-charlie){
+        padding-left: 0;
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div id="page-container">
-    <Sidebar/>
+    <Sidebar v-bind:menuOpened="menuOpened"/>
     <main id="page-content">
       <transition name="fade">
         <Content />
@@ -16,6 +16,7 @@ import PageEdit from './PageEdit.vue';
 
 export default {
   name: 'Page',
+  props: ['menuOpened'],
   components: { Sidebar, PageEdit },
 };
 </script>
@@ -24,9 +25,6 @@ export default {
 @import '../styles/index';
 
 .page #page-content {
-  margin-left: 350px;
-  padding: 50px 100px;
-
   h1,
   h2,
   h3,

@@ -1,6 +1,8 @@
 <template>
   <div class="site-container">
     <header id="site-header">
+      <button v-on:click="toggleNav" id="nav-toggle" v-bind:class="[{opened: menuOpened}, template]"></button>
+
       <router-link v-bind:to="$localePath" id="site-title">
         <span v-if="$siteTitle">{{ $siteTitle }}</span>
       </router-link>
@@ -16,7 +18,7 @@
         <Home v-if="template == 'home'"/>
         <Adventurers v-else-if="template == 'adventurers'"/>
         <Adventurer v-else-if="template == 'adventurer'"/>
-        <Page v-else></Page>
+        <Page v-else v-bind:menuOpened="menuOpened"></Page>
       </transition>
     </section>
   </div>
@@ -35,12 +37,27 @@ export default {
     Adventurers,
     Page,
   },
+  data: () => ({ menuOpened: false }),
   computed: {
     template() {
       return this.$page.frontmatter.template || 'page';
     },
     nav() {
       return this.$site.themeConfig.nav;
+    },
+  },
+  methods: {
+    toggleNav() {
+      if (this.menuOpened) {
+        this.menuOpened = false;
+      } else {
+        this.menuOpened = true;
+      }
+    },
+  },
+  watch: {
+    $route() {
+      this.menuOpened = false;
     },
   },
 };
@@ -138,7 +155,7 @@ img {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 
 #site-title {
@@ -199,5 +216,84 @@ img {
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+#nav-toggle {
+  background-color: #000;
+  border: none;
+  bottom: 0;
+  color: #fff;
+  display: none;
+  font-size: 16px;
+  line-height: 28px;
+  margin: 0 0 0 -20px;
+  padding: 10px;
+  width: 48px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:after {
+    content: "+";
+  }
+
+  &.opened:after {
+    content: "-";
+  }
+}
+
+#page-container {
+  display: flex;
+}
+
+#page-sidebar {
+  flex-basis: content;
+  flex-shrink: 0;
+  max-width: 350px;
+  padding: 50px 30px;
+  transition: left .1s ease-out;
+  z-index: 1;
+}
+
+#page-sidebar + #page-content {
+  padding: 50px 100px;
+}
+
+@media (max-width: $breakpoint-alpha) {
+  #page-sidebar + #page-content {
+    padding: 50px 50px;
+  }
+}
+
+@media (max-width: $breakpoint-bravo) {
+  #page-sidebar {
+    max-width: 250px;
+    padding: 30px 30px;
+  }
+
+  #page-sidebar + #page-content {
+    padding: 30px 50px;
+  }
+}
+
+@media (max-width: $breakpoint-charlie) {
+  .page,
+  .adventurer {
+    &#nav-toggle {
+      display: inline-block;
+    }
+  }
+
+  #page-sidebar {
+    position: fixed;
+    max-width: 100%;
+    width: 100%;
+    left: -100%;
+
+    &.opened {
+      left: 0;
+    }
+  }
 }
 </style>
