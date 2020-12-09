@@ -3,10 +3,12 @@
     <nav id="page-nav">
       <ul>
         <li v-for="page in pages" v-bind:key="page.key">
-          <router-link v-bind:to="page.path" class="page-title">{{ page.frontmatter.name || page.title }}</router-link>
+          <router-link v-bind:to="page.path" v-bind:class="[{active: (page.key == currentPage.key)}, 'page-title']">{{ page.frontmatter.name || page.title }}</router-link>
 
-          <ul v-if="page.headers">
-            <li v-for="header in page.headers" v-bind:key="header.slug"><router-link v-bind:to="page.path + '#' + header.slug">{{ header.title }}</router-link></li>
+          <ul v-if="page.headers && (page.key == currentPage.key)">
+            <li v-for="header in page.headers" v-bind:key="header.slug">
+              <router-link v-bind:to="page.path + '#' + header.slug" v-bind:class="{active: (header.slug == currentAnchor)}">{{ header.title }}</router-link>
+            </li>
           </ul>
         </li>
       </ul>
@@ -27,6 +29,13 @@ export default {
     pages() {
       return utils.getDomainPages(this.domain, this.$site.pages);
     },
+    currentPage() {
+      return this.$page;
+    },
+    currentAnchor() {
+      const { hash } = this.$route;
+      return hash.substr(1);
+    },
   },
 };
 </script>
@@ -39,27 +48,24 @@ export default {
   bottom: 0;
   border-right: 1px solid #eaecef;
   box-sizing: border-box;
-  flex-basis: content;
+  flex-basis: 22rem;
   flex-shrink: 0;
   left: 0;
   margin: 0;
-  max-width: 22rem;
   overflow-y: auto;
-  padding: 3.125rem 1.875rem;
-  top: 3rem;
   transition: left 0.1s ease-out;
   z-index: 1;
 
   @media (max-width: $breakpoint-bravo) {
-    max-width: 16rem;
-    padding: 1.875rem;
+    flex-basis: 16rem;
   }
 
   @media (max-width: $breakpoint-charlie) {
-    position: fixed;
-    max-width: 100%;
-    width: 100%;
+    bottom: 0;
     left: -100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
 
     &.opened {
       left: 0;
@@ -68,6 +74,23 @@ export default {
 }
 
 #page-nav {
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 3.125rem 1.875rem;
+  overflow-y: scroll;
+  position: fixed;
+  top: 3rem;
+  width: 22rem;
+
+  @media (max-width: $breakpoint-bravo) {
+    padding: 1.875rem;
+    width: 16rem;
+  }
+
+  @media (max-width: $breakpoint-charlie) {
+    width: 100%;
+  }
+
   ul {
     padding: 0;
 
@@ -91,7 +114,8 @@ export default {
     display: block;
     padding: 0.313rem 0;
 
-    &:hover {
+    &:hover,
+    &.active {
       color: $accentColor;
     }
   }

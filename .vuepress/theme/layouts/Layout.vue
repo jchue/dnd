@@ -171,11 +171,12 @@ img {
   background-color: #000;
   border: none;
   color: #fff;
-  display: none;
   font-size: 1rem;
   line-height: 1.75;
-  margin: 0 0 0 -0.625rem;
+  margin: 0 1rem 0 -4.25rem;
   padding: 0.625rem;
+  position: static;
+  transition: margin 0.1s;
   width: 3rem;
 
   &:hover {
@@ -194,6 +195,7 @@ img {
     &.page,
     &.adventurer {
       display: inline-block;
+      margin: 0 0 0 -0.625rem;
     }
   }
 }
