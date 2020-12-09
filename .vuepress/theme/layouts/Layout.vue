@@ -207,6 +207,10 @@ img {
   line-height: 1.75;
   padding: 0.625rem;
   text-transform: uppercase;
+
+  @media (max-width: $breakpoint-charlie) {
+    display: none;
+  }
 }
 
 #site-navigation {
